@@ -1,0 +1,55 @@
+{
+  "name": "mint_studio",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "webpack serve --config development.config.js --port 3000",
+    "build-demo": "webpack --config production.config.js",
+    "build": "npm run clean && npm run build-demo",
+    "clean": "rimraf public/dist",
+    "test": "npx http-server -p 8080"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/runtime": "^7.17.9",
+    "@react-three/drei": "^9.8.2",
+    "@react-three/fiber": "^8.0.16",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "rimraf": "^3.0.2",
+    "three": "^0.140.2",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.7.0",
+    "axios": "^0.27.2",
+    "core-js": "^3.22.5",
+    "mobx": "^6.5.0",
+    "mobx-react": "^7.4.0",
+    "react-router-dom": "^6.3.0",
+    "regenerator-runtime": "^0.13.9"
+  }
+}
