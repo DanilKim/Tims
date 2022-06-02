@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -30,7 +30,10 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
 export default function SignIn() {
+  let navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -40,17 +43,20 @@ export default function SignIn() {
       password: data.get('password'),
     });
     axios({
-        method: 'post',
-        url: '/signin',
-        data: data,
-        headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true,
+      method: 'post',
+      url: '/signin',
+      data: data,
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
     }).then((res) => {
-        console.log(res.data);
-    }).catch(()=>console.log("로그인 실패"));
+      console.log(res.data);
+      navigate("/Tims");
+    }).catch(() => {
+      console.log("로그인 실패");
+    });
     if (!data.get('email') || !data.get('email')) {
-        alert("이메일과 비밀번호를 입력하세요");
-        return;
+      alert("이메일과 비밀번호를 입력하세요");
+      return;
     }
   };
 
