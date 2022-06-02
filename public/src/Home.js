@@ -5,7 +5,7 @@ import {
   StoreProvider,
   RootStore,
   MainPage
-} from 'mint-studio';
+} from 'tims';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

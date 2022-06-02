@@ -3,7 +3,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const PAGE_TITLE = 'Mint Studio';
+const PAGE_TITLE = 'Tims';
 
 module.exports = (self) => {
   const isProduction = false;
@@ -32,7 +32,7 @@ module.exports = (self) => {
     resolve: {
       extensions: ['.js'],
       alias: {
-        'mint-studio': path.join(__dirname, './src/export')
+        'tims': path.join(__dirname, './src/export')
       }
     },
     module: {
