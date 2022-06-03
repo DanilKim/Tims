@@ -6,9 +6,11 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 
-import Decorator from './scene/decorator';
+import Ground from './scene/ground';
+import Light from './scene/light';
+import Screen from './scene/screen';
 
 function MainPage() {
   const [ scene, setStore ] = useState(new THREE.Scene);
@@ -22,11 +24,10 @@ function MainPage() {
       style={canvas_style}
       camera={camera_settings}
       onCreated={({ scene }) => setStore( scene )}>
-        <Html fullscreen >
-          <Box> hello world! </Box>
-        </Html>
         <OrbitControls makeDefault attach="orbitControls" />
-        <Decorator />
+        <Ground />
+        <Light />
+        <Screen />
       </Canvas>
     </Box>
   );
