@@ -18,7 +18,7 @@ function Screen() {
         <AppBar position='static' sx={{ background: 'transparent', boxShadow: 'none' }}>
           <Toolbar variant="dense">
             <Typography component={'div'} sx={{ color: 'black', flexGrow: 1 }}>
-              Hello, YunSeung!
+              Hello!!
             </Typography>
             <MenuBtn />
           </Toolbar>
