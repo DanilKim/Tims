@@ -1,7 +1,7 @@
 import { useFrame, useThree } from '@react-three/fiber';
 import { observer } from 'mobx-react';
 import React, { useEffect, useRef, useState } from 'react';
-import { useStores } from '../stores/Context';
+import { useStores } from '../stores/context';
 import * as THREE from 'three';
 
 function TestMesh(props) {
