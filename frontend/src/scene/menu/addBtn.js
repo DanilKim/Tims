@@ -1,13 +1,77 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useSpring, animated, config } from "@react-spring/web";
 import Box from '@mui/material/Box';
-import { green } from '@mui/material/colors';
 import { IconButton } from '@mui/material';
-import AddCirleIcon from '@mui/icons-material/AddCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+
+const SEPARATION_DISTANCE = 70;
+const DELAY = 25;
+
+function finalChildPositions(index) {
+  return -1 * SEPARATION_DISTANCE * index;
+}
+
+function computeDelay(index) {
+  return DELAY * index;
+}
+
+const MENU_ITEMS = ['Building', 'Box', 'Background', 'Avatar', 'Monster', 'Object'];
+
+
+function AddItemBtn(props) {
+  const animOpen = useSpring({
+    from: { translateY: 0, opacity: 0},
+    to: { translateY: finalChildPositions(props.index + 1), opacity: 1},
+    reverse: !props.open,
+    delay: computeDelay(props.index),
+    config: {
+      mass: 1,
+      tension: 180,
+      friction: 12,
+    },
+  })
+
+  //const animClose = useSpring({
+  //  from: { translateY: finalChildPositions(props.index + 1)},
+  //  to: { translateY: 0 },
+  //  //reverse: !props.open,
+  //  delay: computeDelay(props.index),
+  //  config: {
+  //    mass: 1,
+  //    tension: 180,
+  //    friction: 100,
+  //  },
+  //})
+
+  //let anim = props.open ? animOpen : animClose;
+
+  return (
+    <IconButton onClick={()=>{console.log(props.name + ' button clicked!');}}>
+      <animated.div style={animOpen}>
+          <AddCircleIcon sx={{ fontSize: 40, color: 'white' }}/>
+      </animated.div>
+    </IconButton>
+  );
+
+}
+
 
 export default function AddBtn() {
-  const spreadAddMenu = () => {
-    console.log('Add menu spreaded');
-  };
+  const [isOpen, setOpen] = useState(false);
+
+  const openMenu = () => {
+    console.log('main btn clicked!');
+    isOpen ? setOpen(false) : setOpen(true);
+  }
+
+  const animOpen = useSpring({
+    from: { rotate: 0 },
+    to: { rotate: 45 },
+    reverse: !isOpen,
+    config: config.stiff,
+  })
+
 
   return (
     <Box
@@ -20,8 +84,13 @@ export default function AddBtn() {
         },
       }}
     >
-      <IconButton onClick={spreadAddMenu}>
-        <AddCirleIcon sx={{ fontSize: 55, color: 'skyblue' }}/>
+      {MENU_ITEMS.map((item, index) => (
+        <AddItemBtn name={item} index={index} open={isOpen}/>
+      ))}
+      <IconButton onClick={openMenu}>
+        <animated.div style={animOpen}>
+            <AddCircleIcon sx={{ fontSize: 55, color: 'hotpink' }}/>
+        </animated.div>
       </IconButton>
     </Box>
   );
