@@ -11,6 +11,7 @@ import { OrbitControls } from '@react-three/drei';
 import Ground from './scene/ground';
 import Light from './scene/light';
 import Screen from './scene/screen';
+import TestMesh from './scene/testMesh'
 
 function MainPage() {
   const [ scene, setStore ] = useState(new THREE.Scene);
@@ -28,6 +29,7 @@ function MainPage() {
         <Ground />
         <Light />
         <Screen />
+        <TestMesh />
       </Canvas>
     </Box>
   );

@@ -23,7 +23,14 @@ export default function MenuBtn() {
 
   return (
     <Box>
-      <IconButton edge="start" aria-label="menu" aria-controls={open ? 'basic-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={handleClick} sx={{ mr: 5 }}>
+      <IconButton edge="start" 
+      aria-label="menu" 
+      aria-controls={open ? 'basic-menu' : undefined} 
+      aria-haspopup="true" 
+      aria-expanded={open ? 'true' : undefined}
+      onClick={handleClick} 
+      sx={{ mr: 5 }}
+      >
         <Person sx={{color: '#7c7c7c'}} />
         <KeyboardArrowDown sx={{color: '#7c7c7c', transform: open ? 'rotate(-180deg)' : 'rotate(0)' }}/>
       </IconButton>
@@ -32,9 +39,7 @@ export default function MenuBtn() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
+        MenuListProps={{ 'aria-labelledby': 'basic-button', }}
       >
         <MenuItem onClick={handleClose}>
           undo
