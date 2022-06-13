@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RootStore } from './RootStore';
+import { RootStore } from './rootStore';
 
 export const StoreContext = React.createContext(new RootStore());
 export const StoreProvider = StoreContext.Provider;

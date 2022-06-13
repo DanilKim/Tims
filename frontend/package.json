@@ -47,7 +47,7 @@
     "@mui/material": "^5.8.2",
     "axios": "^0.27.2",
     "core-js": "^3.22.5",
-    "lodash.range": "^3.2.0",
+    "http-proxy-middleware": "^2.0.6",
     "mobx": "^6.5.0",
     "mobx-react": "^7.4.0",
     "react-router-dom": "^6.3.0",

@@ -44,8 +44,8 @@ export default function SignIn() {
     });
     axios({
       method: 'post',
-      mode: 'no-cors',
-      url: 'http://localhost:8890/login',
+      // mode: 'no-cors',
+      url: '/api/login',
       data: data,
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true,
