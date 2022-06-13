@@ -1,5 +1,5 @@
-import { StoreProvider } from "./stores/Context";
-import { RootStore } from "./stores/RootStore";
+import { StoreProvider } from "./stores/context";
+import { RootStore } from "./stores/rootStore";
 import MainPage from "./mainPage";
 import SignIn from "./LoginTemplate";
 

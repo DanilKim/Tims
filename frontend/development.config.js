@@ -5,6 +5,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const PAGE_TITLE = 'Tims';
 
+const proxy_server = {
+  '/api': {
+    target: "http://192.168.153.221:8080",
+    changeOrigin: true, 
+    pathRewrite: {'/api': '/'},
+  }
+}
+
 module.exports = (self) => {
   const isProduction = false;
   const port = self.hasOwnProperty('port') ? self.port : 8080;
@@ -28,7 +36,8 @@ module.exports = (self) => {
       static: path.resolve(__dirname, 'public'),
       port: port,
       open: true,
-      historyApiFallback: true
+      historyApiFallback: true,
+      proxy: proxy_server,
     },
     resolve: {
       extensions: ['.js'],
