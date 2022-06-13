@@ -1,9 +1,12 @@
-import { HelloStore } from "./helloStore";
+import { HelloStore } from "./HelloStore";
+import { ActiveObjectStore } from "./ActiveObjectStore";
 
 export class RootStore{
   helloStore;
+  ActiveObjectStore;
 
   constructor() {
-    this.helloStore = new HelloStore(this);
+    this.HelloStore = new HelloStore(this);
+    this.ActiveObjectStore = new ActiveObjectStore(this);
   }
 }
