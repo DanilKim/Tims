@@ -1,11 +1,12 @@
 import { useFrame, useThree } from '@react-three/fiber';
+import { useBox } from '@react-three/cannon';
 import { observer } from 'mobx-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useStores } from '../stores/context';
 import * as THREE from 'three';
 
 function TestMesh(props) {
-  const mesh = useRef();
+  const [ref, api] = useBox(() => ({mass: 0, position: [0, 1, 0], ...props }));
   let intersects;
   const [hovered, setHover] = useState(false);
   const { ActiveObjectStore } = useStores();
@@ -15,11 +16,11 @@ function TestMesh(props) {
   const onMouseMove = () => {
     intersects = raycaster.intersectObjects(scene.children);
     if (intersects.length !== 0){
-      if (intersects[0].object.name === mesh.current.name){
-        mesh.current.position.set(intersects[1].point.x, intersects[1].point.y, intersects[1].point.z);
+      if (intersects[0].object.name === ref.current.name){
+        api.position.set(intersects[1].point.x, intersects[1].point.y+0.5, intersects[1].point.z);
       }
       else {
-        mesh.current.position.set(intersects[0].point.x, intersects[0].point.y, intersects[0].point.z);
+        api.position.set(intersects[0].point.x, intersects[0].point.y+0.5, intersects[0].point.z);
       }
     }  
   }
@@ -37,7 +38,7 @@ function TestMesh(props) {
   return (
     <mesh
       {...props}
-      ref={mesh}
+      ref={ref}
       name='TestMesh'
       onClick={(event) => setActive(!active)}
       onPointerOver={(event) => setHover(true)}
