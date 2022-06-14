@@ -31,7 +31,8 @@ function MainPage() {
         <Screen />
         <Physics>
           <Ground />
-          <TestMesh />
+          <TestMesh name='test1'/>
+          <TestMesh name='test2'/>
         </Physics>
       </Canvas>
     </Box>
