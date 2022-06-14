@@ -27,19 +27,19 @@ function Screen() {
 
   return (
     <group ref={ref}>
-    <Html fullscreen>
-      <Box sx={{ width: '100vw', height: '100vh' }}>
-        <AppBar position='static' sx={{ background: 'transparent', boxShadow: 'none' }}>
-          <Toolbar variant="dense" sx={{ display: 'flex'}}>
-            <MenuBtn />
-            <Typography sx={{ color: 'black' }}>
-              Hello!!
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <AddBtn/>
-      </Box>
-    </Html>
+      <Html position={[window.innerWidth]}>
+        <Box sx={{ width: '100vw', height: '100vh' }}>
+          <AppBar position='static' sx={{ background: 'transparent', boxShadow: 'none' }}>
+            <Toolbar variant="dense" sx={{ display: 'flex'}}>
+              <MenuBtn />
+              <Typography sx={{ color: 'black' }}>
+                Hello!!
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <AddBtn/>
+        </Box>
+      </Html>
     </group>
   )
 }

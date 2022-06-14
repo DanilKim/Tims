@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSpring, animated, config } from "@react-spring/web";
+import { useSpring, animated, config, easings } from "@react-spring/web";
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { EnergySavingsLeaf } from '@mui/icons-material';
 
 
 const MENU_ITEMS = {
   'Building': ['bd1', 'bd2', 'bd3'], 
-  'Box': ['box1, box2, box3, box4, box5'], 
+  'Box': ['box1', 'box2', 'box3', 'box4', 'box5'], 
   'Background': ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6'], 
   'Avatar': ['av1', 'av2', 'av3', 'av4'], 
   'Monster': ['ms1', 'ms2', 'ms3'], 
@@ -52,7 +53,7 @@ function AddSubItemBtn(props) {
     reverse: !props.open,
     delay: computeDelay(props.index),
     immediate: !subRef.current,
-    config: {
+    config: !props.open ? {duration: 300, easing: easings.easeInOutQuart} : {
       mass: 1,
       tension: 180,
       friction: 12,
@@ -66,13 +67,13 @@ function AddSubItemBtn(props) {
         '& > :not(style)': {
           width: '50px', height: '50px',
           position: 'relative',
-          bottom: SEPARATION_Y_DISTANCE * (props.root + 1) ,
+          bottom: SEPARATION_Y_DISTANCE * (props.root + 1) + 5,
         },
       }}
     >
       <animated.div ref={subRef} style={animOpen}>
         <IconButton onClick={openMenu}>
-              <AddBoxIcon sx={{ fontSize: 55, color: 'yellow' }}/>
+          <AddBoxIcon sx={{ fontSize: 55, color: 'yellow' }}/>
         </IconButton>
       </animated.div>
     </Box>
@@ -92,9 +93,10 @@ function AddItemBtn(props) {
   const animOpen = useSpring({
     from: { translateY: 0, opacity: 0},
     to: { translateY: -1 * (props.index + 1) * SEPARATION_Y_DISTANCE, opacity: !itemRef.current ? 0 : 1},
+    immediate: !itemRef.current,
     reverse: !props.open,
     delay: computeDelay(props.index),
-    config: {
+    config: !props.open ? {duration: 300, easing: easings.easeInOutQuart} : {
       mass: 1,
       tension: 180,
       friction: 12,
@@ -120,8 +122,8 @@ function AddItemBtn(props) {
       ))}
 
       <animated.div ref={itemRef} style={animOpen}>
-        <IconButton onClick={openMenu}>
-              <AddCircleIcon sx={{ fontSize: 45, color: 'white' }}/>
+        <IconButton onClick={openMenu} size='small'>
+          <AddCircleIcon sx={{ fontSize: 50, color: 'white' }}/>
         </IconButton>
       </animated.div>
     </>
@@ -145,8 +147,10 @@ export default function AddBtn() {
     }
   }
 
-  const onClickMenu = (index) => {
+  const onClickMenu = (index, item) => {
     setCur(index);
+    console.log(item + ' clicked!');
+    console.log('elements : ' + MENU_ITEMS[item]);
   }
 
   const animOpen = useSpring({
@@ -174,16 +178,16 @@ export default function AddBtn() {
           name={item} 
           index={index} 
           open={isOpen} 
-          onClick={onClickMenu} 
+          onClick={()=>{onClickMenu(index,item)}} 
           current={index === currMenu} 
           subList={MENU_ITEMS[item]}
         />
       ))}
-      <IconButton onClick={openMenu}>
-        <animated.div ref={mainRef} style={animOpen}>
+      <animated.div ref={mainRef} style={animOpen}>
+        <IconButton onClick={openMenu}>
             <AddCircleIcon sx={{ fontSize: 55, color: 'hotpink' }}/>
-        </animated.div>
-      </IconButton>
+        </IconButton>
+      </animated.div>
     </Box>
   );
 }
