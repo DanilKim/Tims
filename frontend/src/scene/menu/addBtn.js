@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSpring, animated, config } from "@react-spring/web";
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
@@ -20,11 +20,14 @@ const MENU_ITEMS = ['Building', 'Box', 'Background', 'Avatar', 'Monster', 'Objec
 
 
 function AddItemBtn(props) {
+  const ref = useRef();
+
   const animOpen = useSpring({
     from: { translateY: 0, opacity: 0},
-    to: { translateY: finalChildPositions(props.index + 1), opacity: 1},
+    to: { translateY: finalChildPositions(props.index + 1), opacity: !ref.current ? 0 : 1},
     reverse: !props.open,
     delay: computeDelay(props.index),
+    immediate: !ref.current,
     config: {
       mass: 1,
       tension: 180,
@@ -48,7 +51,7 @@ function AddItemBtn(props) {
 
   return (
     <IconButton onClick={()=>{console.log(props.name + ' button clicked!');}}>
-      <animated.div style={animOpen}>
+      <animated.div ref={ref} style={animOpen}>
           <AddCircleIcon sx={{ fontSize: 40, color: 'white' }}/>
       </animated.div>
     </IconButton>
@@ -58,6 +61,7 @@ function AddItemBtn(props) {
 
 
 export default function AddBtn() {
+  const ref = useRef();
   const [isOpen, setOpen] = useState(false);
 
   const openMenu = () => {
@@ -68,6 +72,7 @@ export default function AddBtn() {
   const animOpen = useSpring({
     from: { rotate: 0 },
     to: { rotate: 45 },
+    immediate: !ref.current,
     reverse: !isOpen,
     config: config.stiff,
   })
@@ -85,10 +90,10 @@ export default function AddBtn() {
       }}
     >
       {MENU_ITEMS.map((item, index) => (
-        <AddItemBtn name={item} index={index} open={isOpen}/>
+        <AddItemBtn key={index} name={item} index={index} open={isOpen}/>
       ))}
       <IconButton onClick={openMenu}>
-        <animated.div style={animOpen}>
+        <animated.div ref={ref} style={animOpen}>
             <AddCircleIcon sx={{ fontSize: 55, color: 'hotpink' }}/>
         </animated.div>
       </IconButton>
