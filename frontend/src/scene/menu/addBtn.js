@@ -4,21 +4,23 @@ import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { EnergySavingsLeaf } from '@mui/icons-material';
+import ItemBtn from './itemBtn';
 
 
 const MENU_ITEMS = {
   'Building': ['bd1', 'bd2', 'bd3'], 
-  'Box': ['box1', 'box2', 'box3', 'box4', 'box5'], 
-  'Background': ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6'], 
+  'Shape': ['box1', 'box2', 'box3', 'box4', 'box5'], 
+  //'Background': ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6'], 
   'Avatar': ['av1', 'av2', 'av3', 'av4'], 
-  'Monster': ['ms1', 'ms2', 'ms3'], 
-  'Object': []
+  //'Monster': ['ms1', 'ms2', 'ms3'], 
+  'Wall': ['w1', 'w2', 'w3'], 
+  'Door': ['d1', 'd2', 'd3', 'd4', 'd5'], 
+  'Window': ['wd1', 'wd2', 'wd3', 'wd4'], 
 };
 
 const MAIN_BTN_ROTATION_ANGLE = 45;
-const SEPARATION_Y_DISTANCE = 70;
-const SEPARATION_X_DISTANCE = 80;
+const SEPARATION_Y_DISTANCE = 120;
+const SEPARATION_X_DISTANCE = 150;
 const DELAY = 25;
 
 
@@ -123,13 +125,14 @@ function AddItemBtn(props) {
 
       <animated.div ref={itemRef} style={animOpen}>
         <IconButton onClick={openMenu} size='small'>
-          <AddCircleIcon sx={{ fontSize: 50, color: 'white' }}/>
+          <ItemBtn name={props.name}/>
         </IconButton>
       </animated.div>
     </>
   );
-
+  
 }
+//<AddCircleIcon sx={{ fontSize: 50, color: 'white' }}/>
 
 
 export default function AddBtn() {
@@ -167,7 +170,7 @@ export default function AddBtn() {
         '& > :not(style)': {
           width: '50px', height: '50px',
           position: 'absolute',
-          bottom: '3%',
+          bottom: 'calc( 5% + 30px )',
           left: '1.5%'
         },
       }}
@@ -184,8 +187,8 @@ export default function AddBtn() {
         />
       ))}
       <animated.div ref={mainRef} style={animOpen}>
-        <IconButton onClick={openMenu}>
-            <AddCircleIcon sx={{ fontSize: 55, color: 'hotpink' }}/>
+        <IconButton onClick={openMenu} sx={{ml:2}}>
+            <AddCircleIcon sx={{fontSize: 80, color: 'hotpink' }}/>
         </IconButton>
       </animated.div>
     </Box>
