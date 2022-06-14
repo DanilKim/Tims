@@ -54,5 +54,9 @@
     "react-router-dom": "^6.3.0",
     "react-spring": "^9.4.5",
     "regenerator-runtime": "^0.13.9"
-  }
+  },
+  "description": "Side project creating a product extends 'Sims' with metaverse applications.",
+  "main": "development.config.js",
+  "author": "",
+  "license": "ISC"
 }

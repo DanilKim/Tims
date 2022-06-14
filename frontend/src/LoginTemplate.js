@@ -37,18 +37,21 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // console.log(data);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    const jsonData = JSON.stringify({email: data.get('email'), password: data.get('password')})
+    console.log(jsonData)
+
     axios({
       method: 'post',
       // mode: 'no-cors',
-      url: '/api/login',
-      data: data,
-      headers: { "Content-Type": "multipart/form-data" },
-      withCredentials: true,
+      url: '/api/members/login',
+      data: jsonData,
+      headers: { "Content-Type": "application/json" },
+      // withCredentials: true,
     }).then((res) => {
       console.log(res.data);
       navigate("/Tims");

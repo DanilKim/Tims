@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/members")
+@RequestMapping("members")
 public class MemberController {
     private final MemberService memberService;
 
@@ -36,6 +36,9 @@ public class MemberController {
     @PostMapping("login")
     public ResponseEntity<String> loginMember(@RequestBody Map<String, String> json) {
         String token = memberService.loginMember(json.get("email"), json.get("password"));
+        if (token=="login failed") {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(token);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 }

@@ -7,7 +7,8 @@ const PAGE_TITLE = 'Tims';
 
 const proxy_server = {
   '/api': {
-    target: "http://192.168.153.221:8080",
+    // target: "http://192.168.153.221:8080",
+    target: "http://localhost:8080",
     changeOrigin: true, 
     pathRewrite: {'/api': '/'},
   }
