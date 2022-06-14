@@ -14,7 +14,6 @@ function TestMesh(props) {
 
   const onMouseMove = () => {
     if (active) {
-      scene.orbitControls.enabled = false;
       intersects = raycaster.intersectObjects(scene.children);
       if (intersects.length !== 0){
         if (intersects[0].object.name === mesh.current.name){
@@ -25,15 +24,15 @@ function TestMesh(props) {
         }
       }  
     }
-    else {
-      scene.orbitControls.enabled = true;
-    }
   }
-
+  
   useEffect(() => {
     if (active) {
+      scene.orbitControls.enabled = false;
       window.addEventListener('mousemove', onMouseMove, false);
       return () => window.removeEventListener('mousemove', onMouseMove);
+    } else {
+      scene.orbitControls.enabled = true;
     }
   }, [active])
   
