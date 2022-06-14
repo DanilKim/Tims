@@ -27,3 +27,6 @@ yarn-error.log*
 
 # data
 /frontend/public/assets
+
+# backend properties
+/backend/src/main/resources/application.properties
