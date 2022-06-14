@@ -13,17 +13,15 @@ function TestMesh(props) {
   const { raycaster, scene } = useThree();
 
   const onMouseMove = () => {
-    if (active) {
-      intersects = raycaster.intersectObjects(scene.children);
-      if (intersects.length !== 0){
-        if (intersects[0].object.name === mesh.current.name){
-          mesh.current.position.set(intersects[1].point.x, intersects[1].point.y, intersects[1].point.z);
-        }
-        else {
-          mesh.current.position.set(intersects[0].point.x, intersects[0].point.y, intersects[0].point.z);
-        }
-      }  
-    }
+    intersects = raycaster.intersectObjects(scene.children);
+    if (intersects.length !== 0){
+      if (intersects[0].object.name === mesh.current.name){
+        mesh.current.position.set(intersects[1].point.x, intersects[1].point.y, intersects[1].point.z);
+      }
+      else {
+        mesh.current.position.set(intersects[0].point.x, intersects[0].point.y, intersects[0].point.z);
+      }
+    }  
   }
   
   useEffect(() => {

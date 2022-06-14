@@ -38,6 +38,7 @@ function computeDelay(index) {
 }
 
 function AddSubItemBtn(props) {
+  const subRef = useRef();
   const [isOpen, setOpen] = useState(false);
 
   const openMenu = () => {
@@ -47,9 +48,10 @@ function AddSubItemBtn(props) {
 
   const animOpen = useSpring({
     from: { translateX: 0, opacity: 0},
-    to: { translateX: (props.index + 1) * SEPARATION_X_DISTANCE, opacity: 1},
+    to: { translateX: (props.index + 1) * SEPARATION_X_DISTANCE, opacity: !subRef.current ? 0 : 1},
     reverse: !props.open,
     delay: computeDelay(props.index),
+    immediate: !subRef.current,
     config: {
       mass: 1,
       tension: 180,
@@ -68,7 +70,7 @@ function AddSubItemBtn(props) {
         },
       }}
     >
-      <animated.div style={animOpen}>
+      <animated.div ref={subRef} style={animOpen}>
         <IconButton onClick={openMenu}>
               <AddBoxIcon sx={{ fontSize: 55, color: 'yellow' }}/>
         </IconButton>
@@ -79,6 +81,7 @@ function AddSubItemBtn(props) {
 
 
 function AddItemBtn(props) {
+  const itemRef = useRef();
   const [isOpen, setOpen] = useState(false);
 
   const openMenu = () => {
@@ -88,7 +91,7 @@ function AddItemBtn(props) {
 
   const animOpen = useSpring({
     from: { translateY: 0, opacity: 0},
-    to: { translateY: -1 * (props.index + 1) * SEPARATION_Y_DISTANCE, opacity: 1},
+    to: { translateY: -1 * (props.index + 1) * SEPARATION_Y_DISTANCE, opacity: !itemRef.current ? 0 : 1},
     reverse: !props.open,
     delay: computeDelay(props.index),
     config: {
@@ -116,7 +119,7 @@ function AddItemBtn(props) {
         />
       ))}
 
-      <animated.div style={animOpen}>
+      <animated.div ref={itemRef} style={animOpen}>
         <IconButton onClick={openMenu}>
               <AddCircleIcon sx={{ fontSize: 45, color: 'white' }}/>
         </IconButton>
@@ -128,6 +131,7 @@ function AddItemBtn(props) {
 
 
 export default function AddBtn() {
+  const mainRef = useRef();
   const [isOpen, setOpen] = useState(false);
   const [currMenu, setCur] = useState(-1);
 
@@ -148,6 +152,7 @@ export default function AddBtn() {
   const animOpen = useSpring({
     from: { rotate: 0 },
     to: { rotate: 45 },
+    immediate: !mainRef.current,
     reverse: !isOpen,
     config: config.stiff,
   })
@@ -175,7 +180,7 @@ export default function AddBtn() {
         />
       ))}
       <IconButton onClick={openMenu}>
-        <animated.div style={animOpen}>
+        <animated.div ref={mainRef} style={animOpen}>
             <AddCircleIcon sx={{ fontSize: 55, color: 'hotpink' }}/>
         </animated.div>
       </IconButton>
