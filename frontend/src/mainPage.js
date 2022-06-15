@@ -12,7 +12,8 @@ import { Physics } from '@react-three/cannon';
 import Ground from './scene/ground';
 import Light from './scene/light';
 import Screen from './scene/screen';
-import TestMesh from './scene/testMesh'
+import TestMesh from './scene/testMesh';
+import Camera from './scene/camera';
 
 function MainPage() {
   const [ scene, setStore ] = useState(new THREE.Scene);
@@ -28,6 +29,7 @@ function MainPage() {
       onCreated={({ scene }) => setStore( scene )}>
         <OrbitControls makeDefault attach="orbitControls" />
         <Light />
+        <Camera />
         <Screen />
         <Physics>
           <Ground />

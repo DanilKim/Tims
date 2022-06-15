@@ -16,13 +16,12 @@ const proxy_server = {
 module.exports = (self) => {
   const isProduction = false;
   const port = self.hasOwnProperty('port') ? self.port : 8080;
-  if (isProduction) console.info('Webpack: Production mode'); else console.info('Webpack: Development mode');
 
   const config = {
     mode: "development",
     context: path.resolve(__dirname, 'public'),
     entry: {
-      home: './src/home.js',
+      home: './src/Home.js',
       shared: ['react', 'react-dom', 'mobx', 'mobx-react']
     },
     output: {
@@ -30,7 +29,7 @@ module.exports = (self) => {
       filename: '[chunkhash].[name].js',
       clean: true
     },
-    devtool: isProduction ? 'source-map' : 'eval',
+    devtool: 'eval',
     target: 'web',
     devServer: {
       static: path.resolve(__dirname, 'public'),
