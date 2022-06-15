@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSpring, animated, config, easings } from "@react-spring/web";
+import { useSpring, animated, config, easings, useTransition } from "@react-spring/web";
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -50,19 +50,18 @@ function AddSubItemBtn(props) {
     console.log(props.name + ' clicked!!');
   };
 
-  const animOpen = useSpring({
+  const animOpen = useTransition(props.open, {
     from: { translateX: 0, opacity: 0},
-    to: { translateX: (props.index + 1) * SEPARATION_X_DISTANCE, opacity: !subRef.current ? 0 : 1},
+    enter: { translateX: (props.index + 1) * SEPARATION_X_DISTANCE, opacity: 1},
+    leave: { translateX: 0, opacity: 0},
     reverse: !props.open,
     delay: computeDelay(props.index),
-    immediate: !subRef.current,
-    config: !props.open ? {duration: 300, easing: easings.easeInOutQuart} : {
+    config: props.open ? {
       mass: 1,
       tension: 180,
       friction: 12,
-    },
+    } : {duration: 300, easing: easings.easeInOutQuart},
   })
-
 
   return (
     <Box
@@ -74,11 +73,14 @@ function AddSubItemBtn(props) {
         },
       }}
     >
-      <animated.div ref={subRef} style={animOpen}>
-        <IconButton onClick={openMenu}>
-          <SubItemBtn name={props.name} category={Object.keys(MENU_ITEMS)[props.root]}/>
-        </IconButton>
-      </animated.div>
+      {animOpen((style, item) => 
+        item &&
+        <animated.div ref={subRef} style={style}>
+          <IconButton onClick={openMenu}>
+            <SubItemBtn name={props.name} category={Object.keys(MENU_ITEMS)[props.root]}/>
+          </IconButton>
+        </animated.div>
+      )}
     </Box>
   );
 }
@@ -94,19 +96,19 @@ function AddItemBtn(props) {
     setOpen(!isOpen);
   };
 
-  const animOpen = useSpring({
-    from: { translateY: 0, opacity: 0},
-    to: { translateY: -1 * (props.index + 1) * SEPARATION_Y_DISTANCE, opacity: !itemRef.current ? 0 : 1},
-    immediate: !itemRef.current,
+  const animOpen = useTransition(props.open, {
+    from: { translateY: 0, opacity: 0 },
+    enter: { translateY: -1 * (props.index + 1) * SEPARATION_Y_DISTANCE, opacity: 1},
+    leave: { translateY: 0, opacity: 0 },
     reverse: !props.open,
     delay: computeDelay(props.index),
-    config: !props.open ? {duration: 300, easing: easings.easeInOutQuart} : {
+    config: props.open ? {
       mass: 1,
       tension: 180,
       friction: 12,
-    },
+    } : {duration: 300, easing: easings.easeInOutQuart},
   });
-
+  
   useEffect( () => {
     if (!props.current) {
       setOpen(false);
@@ -125,11 +127,14 @@ function AddItemBtn(props) {
         />
       ))}
 
-      <animated.div ref={itemRef} style={animOpen}>
-        <IconButton onClick={openMenu} size='small'>
-          <ItemBtn name={props.name}/>
-        </IconButton>
-      </animated.div>
+      {animOpen((style, item) => 
+        item && 
+        <animated.div ref={itemRef} style={style}>
+          <IconButton onClick={openMenu} size='small'>
+            <ItemBtn name={props.name}/>
+          </IconButton>
+        </animated.div>
+      )}
     </>
   );
   

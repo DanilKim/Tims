@@ -11,7 +11,7 @@ function Camera() {
   const keyBoardEvent = () => {
     switch(window.event.code) {
       case 'KeyT':
-        setStart(Date.now());
+        //setStart(Date.now());
         ModeStore.setCamMode('top');
         scene.orbitControls.setAzimuthalAngle(0.0);
         scene.orbitControls.setPolarAngle(0.0);
@@ -24,7 +24,7 @@ function Camera() {
         scene.orbitControls.enableRotate = false;
         break;
       case 'KeyO':
-        setStart(Date.now());
+        //setStart(Date.now());
         ModeStore.setCamMode('orbit');
         scene.orbitControls.setAzimuthalAngle(0.0);
         scene.orbitControls.setPolarAngle(1.0);
