@@ -10,10 +10,10 @@ module.exports = (self) => {
   const port = self.hasOwnProperty('port') ? self.port : 8080;
 
   const config = {
-    mode: "production",
+    mode: 'production',
     context: path.resolve(__dirname),
     entry: {
-      home: './public/src/home.js',
+      home: './public/src/Home.js',
       shared: ['react', 'react-dom', 'mobx', 'mobx-react']
     },
     output: {
@@ -23,11 +23,6 @@ module.exports = (self) => {
     },
     devtool: 'source-map',
     target: 'web',
-    devServer: {
-      static: path.resolve(__dirname, 'public'),
-      port: port,
-      open: true
-    },
     resolve: {
       extensions: ['.js', '.jsx'],
       alias: {

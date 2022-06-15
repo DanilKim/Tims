@@ -13,7 +13,8 @@ import Ground from './scene/ground';
 import Background from './scene/background';
 import Light from './scene/light';
 import Screen from './scene/screen';
-import TestMesh from './scene/testMesh'
+import TestMesh from './scene/testMesh';
+import Camera from './scene/camera';
 
 function MainPage() {
   const [ scene, setStore ] = useState(new THREE.Scene);
@@ -31,6 +32,7 @@ function MainPage() {
         <gridHelper name="gridHelper" args={[100, 100, 0xff0000]} />
         <Light />
         <Background />
+        <Camera />
         <Screen />
         <Physics>
           <Ground />
