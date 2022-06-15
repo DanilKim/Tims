@@ -5,6 +5,7 @@ import { IconButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ItemBtn from './itemBtn';
+import SubItemBtn from './subItemBtn';
 
 
 const MENU_ITEMS = {
@@ -14,7 +15,7 @@ const MENU_ITEMS = {
   'Avatar': ['av1', 'av2', 'av3', 'av4'], 
   //'Monster': ['ms1', 'ms2', 'ms3'], 
   'Wall': ['w1', 'w2', 'w3'], 
-  'Door': ['d1', 'd2', 'd3', 'd4', 'd5'], 
+  'Door': ['single', 'double', 'panic', 'panicDouble', 'sliding'], 
   'Window': ['wd1', 'wd2', 'wd3', 'wd4'], 
 };
 
@@ -75,12 +76,13 @@ function AddSubItemBtn(props) {
     >
       <animated.div ref={subRef} style={animOpen}>
         <IconButton onClick={openMenu}>
-          <AddBoxIcon sx={{ fontSize: 55, color: 'yellow' }}/>
+          <SubItemBtn name={props.name} category={Object.keys(MENU_ITEMS)[props.root]}/>
         </IconButton>
       </animated.div>
     </Box>
   );
 }
+// <AddBoxIcon sx={{ fontSize: 55, color: 'yellow' }}/>
 
 
 function AddItemBtn(props) {
