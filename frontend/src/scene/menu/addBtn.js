@@ -5,17 +5,18 @@ import { IconButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ItemBtn from './itemBtn';
+import SubItemBtn from './subItemBtn';
 
 
 const MENU_ITEMS = {
   'Building': ['bd1', 'bd2', 'bd3'], 
-  'Shape': ['box1', 'box2', 'box3', 'box4', 'box5'], 
+  'Shape': ['box', 'sphere', '2DShape', 'cone', 'cylinder', 'torus'], 
   //'Background': ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6'], 
   'Avatar': ['av1', 'av2', 'av3', 'av4'], 
   //'Monster': ['ms1', 'ms2', 'ms3'], 
-  'Wall': ['w1', 'w2', 'w3'], 
-  'Door': ['d1', 'd2', 'd3', 'd4', 'd5'], 
-  'Window': ['wd1', 'wd2', 'wd3', 'wd4'], 
+  'Wall': ['bricks', 'painted'], 
+  'Door': ['single', 'double', 'panic', 'panicDouble', 'sliding'], 
+  'Window': ['standard', 'sash', 'venetianBlind', 'curtain'], 
 };
 
 const MAIN_BTN_ROTATION_ANGLE = 45;
@@ -75,12 +76,13 @@ function AddSubItemBtn(props) {
     >
       <animated.div ref={subRef} style={animOpen}>
         <IconButton onClick={openMenu}>
-          <AddBoxIcon sx={{ fontSize: 55, color: 'yellow' }}/>
+          <SubItemBtn name={props.name} category={Object.keys(MENU_ITEMS)[props.root]}/>
         </IconButton>
       </animated.div>
     </Box>
   );
 }
+// <AddBoxIcon sx={{ fontSize: 55, color: 'yellow' }}/>
 
 
 function AddItemBtn(props) {

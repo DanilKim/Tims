@@ -9,6 +9,7 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 
 import Ground from './scene/ground';
+import Background from './scene/background';
 import Light from './scene/light';
 import Screen from './scene/screen';
 import TestMesh from './scene/testMesh';
@@ -26,7 +27,9 @@ function MainPage() {
       style={canvas_style}
       camera={camera_settings}
       onCreated={({ scene }) => setStore( scene )}>
+        <gridHelper name="gridHelper" args={[100, 100, 0xff0000]} />
         <Light />
+        <Background />
         <Camera />
         <Screen />
         <Physics>
