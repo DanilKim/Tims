@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import { observer } from 'mobx-react';
 import { useStores } from '../stores/context';
-import { useThree, useFrame } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 
 function Camera() {
   const { scene } = useThree();
@@ -11,7 +12,6 @@ function Camera() {
   const keyBoardEvent = () => {
     switch(window.event.code) {
       case 'KeyT':
-        setStart(Date.now());
         ModeStore.setCamMode('top');
         scene.orbitControls.setAzimuthalAngle(0.0);
         scene.orbitControls.setPolarAngle(0.0);
@@ -24,7 +24,6 @@ function Camera() {
         scene.orbitControls.enableRotate = false;
         break;
       case 'KeyO':
-        setStart(Date.now());
         ModeStore.setCamMode('orbit');
         scene.orbitControls.setAzimuthalAngle(0.0);
         scene.orbitControls.setPolarAngle(1.0);
@@ -40,6 +39,11 @@ function Camera() {
     return () => window.removeEventListener('keydown', keyBoardEvent);
   })
 
+  return(
+    <React.Fragment>
+      <OrbitControls makeDefault attach="orbitControls" />
+    </React.Fragment>
+  )
 }
 
 export default observer(Camera);

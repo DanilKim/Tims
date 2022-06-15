@@ -15,7 +15,7 @@ export class ModeStore {
   }
 
   setCamMode = (camMode) => {
-      this.camMode = camMode;
+    this.camMode = camMode;
   }
 
 }

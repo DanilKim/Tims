@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/cannon';
 
 import Ground from './scene/ground';
@@ -27,7 +26,6 @@ function MainPage() {
       style={canvas_style}
       camera={camera_settings}
       onCreated={({ scene }) => setStore( scene )}>
-        <OrbitControls makeDefault attach="orbitControls" />
         <Light />
         <Camera />
         <Screen />

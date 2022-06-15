@@ -1,4 +1,4 @@
-import { useFrame, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import { useBox } from '@react-three/cannon';
 import { observer } from 'mobx-react';
 import React, { useEffect, useRef, useState } from 'react';
