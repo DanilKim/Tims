@@ -27,8 +27,9 @@ const STYLE_TITLE = {
   width:'100%',
   textAlign:'center',
   display:'block',
-  marginBottom:'.1em',
-  textTransform: 'capitalize'
+  //marginBottom:'.1em',
+  textTransform: 'capitalize',
+  fontSize: '0.8em'
 };
 
 const STYLE_TITLE_HOVER = {
@@ -38,14 +39,14 @@ const STYLE_TITLE_HOVER = {
 
 const STYLE_IMAGE_CONTAINER = {
   width: '100%',
-  height: '4em',
+  height: '4.2em',
   position:'relative',
   overflow:'hidden',
   border: 'solid 1px #e6e6e6',
   borderRadius: '30px',
   padding:0,
   margin:0,
-  marginBottom: '3px'  
+  marginBottom: '5px'  
 }
 
 const STYLE_IMAGE = {

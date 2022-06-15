@@ -10,6 +10,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/cannon';
 
 import Ground from './scene/ground';
+import Background from './scene/background';
 import Light from './scene/light';
 import Screen from './scene/screen';
 import TestMesh from './scene/testMesh'
@@ -27,7 +28,9 @@ function MainPage() {
       camera={camera_settings}
       onCreated={({ scene }) => setStore( scene )}>
         <OrbitControls makeDefault attach="orbitControls" />
+        <gridHelper name="gridHelper" args={[100, 100, 0xff0000]} />
         <Light />
+        <Background />
         <Screen />
         <Physics>
           <Ground />
