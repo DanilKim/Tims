@@ -45,6 +45,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.2",
     "@mui/material": "^5.8.2",
+    "@react-three/cannon": "^6.3.0",
     "axios": "^0.27.2",
     "core-js": "^3.22.5",
     "http-proxy-middleware": "^2.0.6",

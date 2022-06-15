@@ -27,3 +27,9 @@ yarn-error.log*
 
 # data
 /frontend/public/assets
+
+# backend properties
+/backend/.gradle
+/backend/.idea
+/backend/build
+/backend/src/main/resources/application.properties

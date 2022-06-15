@@ -15,7 +15,7 @@ import { useThree } from '@react-three/fiber';
 
 function Screen() {
   const ref = useRef();
-  const { camera, viewport } = useThree();
+  const { camera } = useThree();
 
   useEffect(() => {
     const refCopy = ref.current;
@@ -27,7 +27,7 @@ function Screen() {
 
   return (
     <group ref={ref}>
-      <Html position={[window.innerWidth]}>
+      <Html position={[]}>
         <Box sx={{ width: '100vw', height: '100vh' }}>
           <AppBar position='static' sx={{ background: 'transparent', boxShadow: 'none' }}>
             <Toolbar variant="dense" sx={{ display: 'flex'}}>

@@ -1,18 +1,14 @@
 import React from 'react';
 import * as THREE from 'three';
-import { Plane } from '@react-three/drei';
+import { usePlane } from '@react-three/cannon';
 import { observer } from 'mobx-react';
 
-function Ground() {
+function Ground(props) {
+  const [ref] = usePlane(() => ({ rotation: [- Math.PI / 2, 0, 0], ...props })) 
   return (
-    <Plane
-      receiveShadow={true}
-      position={[0, 0, 0]}
-      rotation={[- Math.PI / 2, 0, 0]}
-      args={[1000, 1000]}
-      name="Plane"
-    >
-    </Plane>
+    <mesh ref={ref}>
+      <planeGeometry args={[100, 100]} />
+    </mesh>
   );
 }
 
