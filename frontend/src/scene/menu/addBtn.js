@@ -10,13 +10,13 @@ import SubItemBtn from './subItemBtn';
 
 const MENU_ITEMS = {
   'Building': ['bd1', 'bd2', 'bd3'], 
-  'Shape': ['box1', 'box2', 'box3', 'box4', 'box5'], 
+  'Shape': ['box', 'sphere', '2DShape', 'cone', 'cylinder', 'torus'], 
   //'Background': ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6'], 
   'Avatar': ['av1', 'av2', 'av3', 'av4'], 
   //'Monster': ['ms1', 'ms2', 'ms3'], 
-  'Wall': ['w1', 'w2', 'w3'], 
+  'Wall': ['bricks', 'painted'], 
   'Door': ['single', 'double', 'panic', 'panicDouble', 'sliding'], 
-  'Window': ['wd1', 'wd2', 'wd3', 'wd4'], 
+  'Window': ['standard', 'sash', 'venetianBlind', 'curtain'], 
 };
 
 const MAIN_BTN_ROTATION_ANGLE = 45;
