@@ -45,7 +45,7 @@ export default function SignIn() {
     axios({
       method: 'post',
       // mode: 'no-cors',
-      url: '/api/login',
+      url: '/api/members/test',
       data: data,
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true,
