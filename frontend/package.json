@@ -52,6 +52,7 @@
     "lodash.range": "^3.2.0",
     "mobx": "^6.5.0",
     "mobx-react": "^7.4.0",
+    "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "react-spring": "^9.4.5",
     "regenerator-runtime": "^0.13.9"
