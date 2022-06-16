@@ -1,7 +1,7 @@
 package com.example.springdatamongodbtutorial.service;
 
 import com.example.springdatamongodbtutorial.domain.Member;
-import com.example.springdatamongodbtutorial.jwt.JwtUtil;
+import com.example.springdatamongodbtutorial.jwt.JwtProvider;
 import com.example.springdatamongodbtutorial.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,13 +16,13 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
+    private final JwtProvider jwtProvider;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository, JwtUtil jwtUtil) {
+    public MemberService(MemberRepository memberRepository, JwtProvider jwtProvider) {
         this.memberRepository = memberRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
-        this.jwtUtil = jwtUtil;
+        this.jwtProvider = jwtProvider;
     }
 
     public List<Member> getMembers() {
@@ -63,8 +63,12 @@ public class MemberService {
             return "login failed";
         }
 
-        String token = jwtUtil.createToken(member.get().getUserName());
+        String token = jwtProvider.createToken(member.get());
 
         return token;
+    }
+
+    public Optional<Member> getMemberInfo(String userName) {
+        return memberRepository.findByUserName(userName);
     }
 }

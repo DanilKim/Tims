@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("members")
@@ -40,5 +42,12 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(token);
         }
         return ResponseEntity.status(HttpStatus.OK).body(token);
+    }
+
+    @GetMapping("info")
+    public ResponseEntity<Member> getInfo(HttpServletRequest request) {
+        String userName = (String) request.getAttribute("userName");
+        Optional<Member> member = memberService.getMemberInfo(userName);
+        return ResponseEntity.status(HttpStatus.OK).body(member.get());
     }
 }
