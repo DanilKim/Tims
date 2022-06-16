@@ -6,7 +6,8 @@ import {
   StoreProvider,
   RootStore,
   MainPage,
-  SignIn
+  SignIn,
+  SignUp
 } from 'tims';
 
 const container = document.getElementById('root');
@@ -17,6 +18,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" exact element={<SignIn/>}></Route>
+      <Route path="/SignUp" exact element={<SignUp/>}></Route>
       <Route path="/Tims" element={
         <StoreProvider value={rootStore}>
           <MainPage/>

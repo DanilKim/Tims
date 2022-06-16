@@ -37,21 +37,28 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    //console.log(data);
+    //console.log({
+    //  email: data.get('email'),
+    //  password: data.get('password'),
+    //});
+    const jsonData = JSON.stringify({email: data.get('email'), password: data.get('password')})
+
     axios({
       method: 'post',
       // mode: 'no-cors',
-      url: '/api/members/test',
-      data: data,
-      headers: { "Content-Type": "multipart/form-data" },
+      url: '/api/members/login',
+      data: jsonData,
+      headers: { "Content-Type": "application/json" },
       withCredentials: true,
     }).then((res) => {
-      console.log(res.data);
-      navigate("/Tims");
+      if (res.data === 'login failed') {
+        alert('아이디와 비밀번호를 확인하세요.');
+        navigate("/");
+      } else {
+        console.log(res.data);
+        navigate("/Tims");
+      }
     }).catch(() => {
       console.log("로그인 실패");
     });
@@ -119,7 +126,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/SignUp" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
